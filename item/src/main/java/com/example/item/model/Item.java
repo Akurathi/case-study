@@ -191,23 +191,23 @@ public class Item {
             item = new Item();
         }
 
-        public CustomerBuilder withId(Long id) {
-            customer.setId(id);
+        public ItemBuilder withId(Long id) {
+            item.setId(id);
             return this;
         }
 
-        public CustomerBuilder withFirstName(String firstName) {
-            customer.setFirstName(firstName);
+        public ItemBuilder withName(String name) {
+            item.setName(name);
             return this;
         }
 
-        public CustomerBuilder withLastName(String lastName) {
-            customer.setLastName(lastName);
+        public ItemBuilder withDescription(String description) {
+            item.setDescription(description);
             return this;
         }
 
-        public CustomerBuilder withEmail(String Email) {
-            customer.setEmail(Email);
+        public ItemBuilder withPrice(double price) {
+            item.setPrice(price);
             return this;
         }
 
@@ -223,8 +223,8 @@ public class Item {
 //            return this;
 //        }
 
-        public Customer build() {
-            return customer;
+        public Item build() {
+            return item;
         }
     }
 }

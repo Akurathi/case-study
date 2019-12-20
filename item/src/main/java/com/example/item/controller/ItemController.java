@@ -1,49 +1,49 @@
 package com.example.item.controller;
 
-import com.example.customer.model.Customer;
-import com.example.customer.service.CustomerService;
+
+import com.example.item.model.Item;
+import com.example.item.service.ItemService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("customerController")
+@RequestMapping("itemController")
 public class ItemController {
 
-    private CustomerService customerService;
+    private ItemService itemService;
 
-    public ItemController(CustomerService customerService) {
+    public ItemController(ItemService itemService) {
 
-        this.customerService = customerService;
+        this.itemService = itemService;
     }
 
-    @PostMapping(value = "addCustomer" , produces = "application/json")
-    public Customer add(@RequestBody Customer customer) {
+    @PostMapping(value = "addItem" , produces = "application/json")
+    public Item add(@RequestBody Item item) {
         System.out.println("----Coming inside the controller---add-");
-        return this.customerService.add(customer);
+        return this.itemService.add(item);
     }
 
 
-//    @GetMapping(value = "getEmail/{email}", produces = "application/json")
-//    public Customer get(@PathVariable("email") String email) {
+    @GetMapping(value = "items/{item}", produces = "application/json")
+    public Item get(@PathVariable("item") String item) {
+        System.out.println("----Coming inside the controller---get-");
+
+        return this.itemService.get(item);
+    }
+
+//    @GetMapping(value = "getEmail", produces = "application/json")
+//    public Customer get(@RequestBody final String email) {
 //        System.out.println("----Coming inside the controller---get-");
 //        System.out.println(email);
-//        System.out.println("**********" + this.customerService.get(email));
 //        return this.customerService.get(email);
 //    }
 
-    @GetMapping(value = "getEmail", produces = "application/json")
-    public Customer get(@RequestBody final String email) {
-        System.out.println("----Coming inside the controller---get-");
-        System.out.println(email);
-        return this.customerService.get(email);
-    }
 
-
-    @GetMapping(value = "getAllCustomers" , produces = "application/json")
-    public List<Customer> getAll() {
+    @GetMapping(value = "getAllItems" , produces = "application/json")
+    public List<Item> getAll() {
         System.out.println("----Coming inside the controller---getAll-");
-        return this.customerService.getAll();
+        return this.itemService.getAll();
     }
 
 

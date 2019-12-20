@@ -1,8 +1,9 @@
 package com.example.item.service;
 
 
-import com.example.customer.model.Customer;
-import com.example.customer.repository.CustomerRepository;
+
+import com.example.item.model.Item;
+import com.example.item.repository.ItemRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,27 +13,27 @@ import java.util.List;
 @Service
 public class ItemService {
 
-    private CustomerRepository customerRepository;
+    private ItemRepository itemRepository;
 
-    public ItemService(CustomerRepository customerRepository) {
+    public ItemService(ItemRepository itemRepository) {
 
-        this.customerRepository = customerRepository;
+        this.itemRepository = itemRepository;
     }
 
-    public Customer add(Customer customer) {
+    public Item add(Item customer) {
 
-        return customerRepository.save(customer);
+        return itemRepository.save(customer);
     }
 
-    public Customer get(String emailId) {
+    public Item get(String item) {
 
-        Customer optional = customerRepository.findCustomerByEmail(emailId);
+        Item optional = itemRepository.findItemByName(item);
         System.out.println("----Coming inside the service----");
         System.out.println(optional);
 
-        Customer result = null;
+        Item result = null;
         if (optional != null) {
-            result = (Customer) optional;
+            result = (Item) optional;
         }
         return result;
 
@@ -49,9 +50,9 @@ public class ItemService {
 //        return true;
 //    }
 
-    public List<Customer> getAll() {
+    public List<Item> getAll() {
 
-        return (List<Customer>) customerRepository.findAll();
+        return (List<Item>) itemRepository.findAll();
     }
 
 }
