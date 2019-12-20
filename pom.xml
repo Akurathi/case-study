@@ -34,6 +34,7 @@
 	<modules>
 
 		<module>customer</module>
+		<module>h2-db</module>
 		<module>item</module>
 	</modules>
 

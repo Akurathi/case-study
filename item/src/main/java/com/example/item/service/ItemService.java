@@ -27,9 +27,12 @@ public class ItemService {
 
     public Item get(String item) {
 
-        Item optional = itemRepository.findItemByName(item);
         System.out.println("----Coming inside the service----");
+        System.out.println("item is ----> " + item);
+        Item optional = itemRepository.findItemByName(item);
+
         System.out.println(optional);
+        System.out.println("itemRepository.findItemByName(item) -> " + itemRepository.findItemByName(item));
 
         Item result = null;
         if (optional != null) {

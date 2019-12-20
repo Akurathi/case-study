@@ -18,7 +18,7 @@ public class Customer {
     private String firstName;
     private String lastName;
 
-    @Email
+//    @Email
     private String email;
     //private PetType petType;
 

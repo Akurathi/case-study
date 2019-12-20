@@ -2,11 +2,15 @@ package com.example.customer;
 
 import com.example.customer.controller.CustomerController;
 import com.example.customer.model.Customer;
+
+import org.h2.tools.Server;
 import org.springframework.boot.ExitCodeGenerator;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.annotation.Bean;
 
+import java.sql.SQLException;
 import java.util.List;
 
 @SpringBootApplication
@@ -22,6 +26,11 @@ public class CustomerApplication implements ExitCodeGenerator {
 		testApp();
 	}
 
+//	@Bean(initMethod = "start", destroyMethod = "stop")
+//	public Server h2Server() throws SQLException {
+//		return Server.createTcpServer("-tcp", "-tcpAllowOthers", "-tcpPort", "9092");
+//	}
+
 	public static void testApp(){
 		System.out.println();
 		customerController = (CustomerController) context.getBean("customerController");
@@ -35,7 +44,7 @@ public class CustomerApplication implements ExitCodeGenerator {
 		customerController.add(customer2);
 
 		display(customerController.getAll());
-		//display(customerController.get("sunnyakurathi@gmail.com"));
+		display(customerController.getByEmail("sunnyakurathi@gmail.com"));
 	}
 
 	private static void display(Object obj) {

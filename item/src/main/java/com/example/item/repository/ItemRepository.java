@@ -11,6 +11,7 @@ public interface ItemRepository extends CrudRepository<Item, Long> {
     //Customer findCustomerByEmail(String email);
 
     Item findItemByName(String name);
+    Item findAllByName(String Name);
 }
 
 //public interface CustomerRepository extends JpaRepository<Customer, Long> {

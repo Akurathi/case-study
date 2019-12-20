@@ -28,7 +28,7 @@ public class ItemController {
     @GetMapping(value = "items/{item}", produces = "application/json")
     public Item get(@PathVariable("item") String item) {
         System.out.println("----Coming inside the controller---get-");
-
+        System.out.println("item is ----> " + item);
         return this.itemService.get(item);
     }
 

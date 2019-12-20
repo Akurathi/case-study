@@ -25,7 +25,7 @@ public class CustomerService{
         return customerRepository.save(customer);
     }
 
-    public Customer get(String emailId) {
+    public Customer getByEmail(String emailId) {
 
         Customer optional = customerRepository.findCustomerByEmail(emailId);
         System.out.println("----Coming inside the service----");
