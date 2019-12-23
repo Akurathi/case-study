@@ -2,8 +2,10 @@ package com.example.customer.controller;
 
 import com.example.customer.model.Customer;
 import com.example.customer.service.CustomerService;
-import org.springframework.stereotype.Controller;
+import org.springframework.http.HttpStatus;
+
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 
 import java.util.List;
@@ -31,7 +33,15 @@ public class CustomerController {
         System.out.println("----Coming inside the controller---get-");
         System.out.println(email);
         System.out.println("**********" + this.customerService.getByEmail(email));
-       return this.customerService.getByEmail(email);
+        Customer customer = null;
+        try {
+            customer = this.customerService.getByEmail(email);
+        }catch (Exception exc) {
+            throw new ResponseStatusException(
+                    HttpStatus.NOT_FOUND, "Customer [" + email + "] Not Found", exc);
+        }
+        return customer;
+
     }
 
 //    @GetMapping(value = "getEmail", produces = "application/json")

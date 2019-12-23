@@ -34,8 +34,11 @@
 	<modules>
 		<module>config-server</module>
 		<module>customer</module>
+		<module>eureka</module>
 		<module>h2-db</module>
 		<module>item</module>
+		<module>sales-order-service</module>
+		<module>zuul</module>
 	</modules>
 
 	<build>

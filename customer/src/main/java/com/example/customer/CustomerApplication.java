@@ -3,15 +3,16 @@ package com.example.customer;
 import com.example.customer.controller.CustomerController;
 import com.example.customer.model.Customer;
 
-import org.h2.tools.Server;
+
 import org.springframework.boot.ExitCodeGenerator;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.context.annotation.Bean;
 
-import java.sql.SQLException;
+import org.springframework.context.ConfigurableApplicationContext;
+
 import java.util.List;
+
+//@EnableDiscoveryClient
 
 @SpringBootApplication
 public class CustomerApplication implements ExitCodeGenerator {
