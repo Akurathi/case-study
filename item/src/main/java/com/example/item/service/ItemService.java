@@ -7,7 +7,6 @@ import com.example.item.repository.ItemRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-//import java.util.Optional;
 
 
 @Service
@@ -42,16 +41,7 @@ public class ItemService {
 
     }
 
-//    public Customer modify(Customer customer) {
-//
-//        return customerRepository.save(customer);
-//    }
-//
-//    public boolean delete(Customer customer) {
-//
-//        customerRepository.delete(customer);
-//        return true;
-//    }
+
 
     public List<Item> getAll() {
 

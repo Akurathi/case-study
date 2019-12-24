@@ -11,9 +11,7 @@ import javax.persistence.*;
 @Entity(name = "OrderLineItem")
 @Table(name = "orderlineitem")
 public class OrderLineItem {
-    //Order Description, Order Date, Customer email id, list of item names
 
-    //id, item_name, quantity, order_id
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -21,7 +19,7 @@ public class OrderLineItem {
 
     private String itemName;
 
-//    private int quantity;
+   private int quantity;
 
     private Long orderId;
 

@@ -6,7 +6,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.util.Date;
 import java.util.List;
 
-//Order Description, Order Date, Customer email id, list of item names
 @Data
 public class customDetails {
     private String description;

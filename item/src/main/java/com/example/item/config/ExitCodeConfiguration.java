@@ -13,12 +13,7 @@ public class ExitCodeConfiguration {
 
     private static final Logger logger = LoggerFactory.getLogger(ExitCodeConfiguration.class.getName());
 
-    // Comment this out when done testing - will always throw an exception
-    /*@Bean
-    CommandLineRunner createException() {
 
-        return args -> Integer.parseInt("test") ;
-    }*/
 
     @Bean
     public ExitCodeExceptionMapper exitCodeToExceptionMapper() {

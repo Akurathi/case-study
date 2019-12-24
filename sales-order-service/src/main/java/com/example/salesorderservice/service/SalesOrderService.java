@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 
 
 @Service
@@ -37,37 +38,15 @@ public class SalesOrderService {
 
     }
 
-//    public Item get(String item) {
-//
-//        System.out.println("----Coming inside the service----");
-//        System.out.println("item is ----> " + item);
-//        Item optional = itemRepository.findItemByName(item);
-//
-//        System.out.println(optional);
-//        System.out.println("itemRepository.findItemByName(item) -> " + itemRepository.findItemByName(item));
-//
-//        Item result = null;
-//        if (optional != null) {
-//            result = (Item) optional;
-//        }
-//        return result;
-//
-//    }
+    public List<SalesOrder> getOrderIdByEmail(String email)
+    {
+        List<SalesOrder> salesOrder = null;
+        salesOrder = this.salesOrderRepository.findAllByEmail(email);
 
-//    public Customer modify(Customer customer) {
-//
-//        return customerRepository.save(customer);
-//    }
-//
-//    public boolean delete(Customer customer) {
-//
-//        customerRepository.delete(customer);
-//        return true;
-//    }
 
-//    public List<Item> getAll() {
-//
-//        return (List<Item>) itemRepository.findAll();
-//    }
+        return salesOrder;
+    }
+
+
 
 }

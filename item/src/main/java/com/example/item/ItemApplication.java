@@ -26,7 +26,6 @@ public class ItemApplication implements ExitCodeGenerator {
 		itemController = (ItemController) context.getBean("itemController");
 
 		// create customers
-//		Pet pet1 = Pet.builder().withName("Strangles").withBirthDate(new Date()).withPetType(PetType.SNAKE).withOwner(owner1).build();
 		Item item1 = Item.builder().withName("iPhone").withDescription("Mobile").withPrice(999.99).build();
 		Item item2 = Item.builder().withName("samsung").withDescription("Mobile").withPrice(799.99).build();
 

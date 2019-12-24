@@ -4,17 +4,15 @@ package com.example.salesorderservice.repository;
 import com.example.salesorderservice.model.SalesOrder;
 import org.springframework.data.repository.CrudRepository;
 
-//import org.springframework.data.jpa.repository.JpaRepository;
+import java.util.List;
+
 
 public interface SalesOrderRepository extends CrudRepository<SalesOrder, Long> {
 
-    //Customer findCustomerByEmail(String email);
 
-//    Item findItemByName(String name);
-//    Item findAllByName(String Name);
+    List<SalesOrder> findAllByEmail(String email);
+
+
 }
 
-//public interface CustomerRepository extends JpaRepository<Customer, Long> {
-//
-////    Customer findByEmailAddress(String emailAddress);
-//}
+

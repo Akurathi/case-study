@@ -32,12 +32,7 @@ public class ItemController {
         return this.itemService.get(item);
     }
 
-//    @GetMapping(value = "getEmail", produces = "application/json")
-//    public Customer get(@RequestBody final String email) {
-//        System.out.println("----Coming inside the controller---get-");
-//        System.out.println(email);
-//        return this.customerService.get(email);
-//    }
+
 
 
     @GetMapping(value = "getAllItems" , produces = "application/json")
