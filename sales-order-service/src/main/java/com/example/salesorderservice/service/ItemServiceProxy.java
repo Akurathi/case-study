@@ -14,4 +14,5 @@ public interface ItemServiceProxy {
 
     @GetMapping(value = "itemController/items/{item}", produces = "application/json")
     Item get(@PathVariable("item") String item);
+
 }

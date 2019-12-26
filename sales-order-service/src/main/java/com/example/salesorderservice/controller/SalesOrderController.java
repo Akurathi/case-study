@@ -21,7 +21,7 @@ public class SalesOrderController {
     private SalesOrderService salesOrderService;
     private OrderLineItemService orderLineItemService;
 
-//    @LoadBalanced
+
     @Autowired
     private CustomerServiceProxy customerServiceProxy;
 
