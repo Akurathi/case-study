@@ -18,7 +18,7 @@ public class ItemApplication implements ExitCodeGenerator {
 
 	public static void main(String[] args) {
 		context = SpringApplication.run(ItemApplication.class, args);
-		testApp();
+//		testApp();
 	}
 
 	private static void testApp() {

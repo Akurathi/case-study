@@ -24,7 +24,7 @@ public class CustomerApplication implements ExitCodeGenerator {
 	public static void main(String[] args) {
 		context = SpringApplication.run(CustomerApplication.class, args);
 
-		testApp();
+		//testApp();
 	}
 
 //	@Bean(initMethod = "start", destroyMethod = "stop")

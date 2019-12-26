@@ -7,6 +7,8 @@ import com.example.salesorderservice.service.ItemServiceProxy;
 import com.example.salesorderservice.service.OrderLineItemService;
 import com.example.salesorderservice.service.SalesOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
+import org.springframework.cloud.netflix.ribbon.RibbonClient;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
@@ -19,6 +21,7 @@ public class SalesOrderController {
     private SalesOrderService salesOrderService;
     private OrderLineItemService orderLineItemService;
 
+//    @LoadBalanced
     @Autowired
     private CustomerServiceProxy customerServiceProxy;
 
