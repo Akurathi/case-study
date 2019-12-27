@@ -8,10 +8,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 //@FeignClient(name="sales-order-service", url = "http://customer-service/")
-@FeignClient(name = "customer-service")
 @RibbonClient(name = "customer-service")
+@FeignClient(name = "customer-service")
 public interface CustomerServiceProxy {
-
     @GetMapping("customerController/getEmail/{email}")
     Customer getByEmail(@PathVariable("email") String email);
 }

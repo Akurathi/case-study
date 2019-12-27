@@ -10,8 +10,6 @@ import java.util.Objects;
 @Data
 public class Item {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     private String name;
@@ -21,7 +19,7 @@ public class Item {
     private Double price;
 
 
-    protected Item() {
+    public Item() {
 
     }
 

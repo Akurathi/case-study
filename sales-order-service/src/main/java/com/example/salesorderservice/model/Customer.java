@@ -10,8 +10,6 @@ import java.util.Objects;
 @Data
 public class Customer {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     private String firstName;
@@ -19,9 +17,7 @@ public class Customer {
 
     private String email;
 
-
-
-    protected Customer() {
+    public Customer() {
 
     }
 

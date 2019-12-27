@@ -2,10 +2,7 @@ package com.example.salesorderservice.controller;
 
 
 import com.example.salesorderservice.model.*;
-import com.example.salesorderservice.service.CustomerServiceProxy;
-import com.example.salesorderservice.service.ItemServiceProxy;
-import com.example.salesorderservice.service.OrderLineItemService;
-import com.example.salesorderservice.service.SalesOrderService;
+import com.example.salesorderservice.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.cloud.netflix.ribbon.RibbonClient;
@@ -22,38 +19,46 @@ public class SalesOrderController {
 
     private SalesOrderService salesOrderService;
     private OrderLineItemService orderLineItemService;
+    private CustomerService customerService;
+    private ItemService itemService;
     private static final Logger LOG = Logger.getLogger(SalesOrderController.class.getName());
 
-    @Autowired
-    private CustomerServiceProxy customerServiceProxy;
+//    @Autowired
+//    private CustomerServiceProxy customerServiceProxy;
+//
+//    @Autowired
+//    private ItemServiceProxy itemServiceProxy;
 
-    @Autowired
-    private ItemServiceProxy itemServiceProxy;
-
-    public SalesOrderController(SalesOrderService salesOrderService, OrderLineItemService orderLineItemService) {
-
+    public SalesOrderController(SalesOrderService salesOrderService, OrderLineItemService orderLineItemService, CustomerService customerService, ItemService itemService) {
+        this.customerService = customerService;
         this.salesOrderService = salesOrderService;
         this.orderLineItemService = orderLineItemService;
+        this.itemService = itemService;
     }
 
     @PostMapping(value = "orders", produces = "application/json")
-    public Long createOrder(@RequestBody customDetails orderDetails) {
+    public String createOrder(@RequestBody customDetails orderDetails) {
 
         LOG.log(Level.INFO, "You reached create order method");
 
         System.out.println("----Coming inside the controller---create order---------------------");
 
-        System.out.println("--- Checking Email is valid or not ----" + customerServiceProxy.getByEmail(orderDetails.getEmail()));
-
+//        System.out.println("--- Checking Email is valid or not ----" + customerServiceProxy.getByEmail(orderDetails.getEmail()));
+        String result = "";
         Customer isCustomerAvailable = null;
         boolean customerEmailAvailable = false;
-        isCustomerAvailable = customerServiceProxy.getByEmail(orderDetails.getEmail());
+//        isCustomerAvailable = customerServiceProxy.getByEmail(orderDetails.getEmail());
+        isCustomerAvailable = customerService.getByEmail(orderDetails.getEmail());
+
+        if(isCustomerAvailable.getId() == -1L)
+            return "**** Oops... Customer Server is down  ******";
+
         if (isCustomerAvailable != null)
             customerEmailAvailable = true;
 
         List<Long> orderIdsList = new ArrayList<>();
 
-        Long orderIdCreated = null;
+//        Long orderIdCreated = null;
 
         HashMap<String, Integer> hmap = new HashMap<>();
 
@@ -64,7 +69,11 @@ public class SalesOrderController {
             double totalPrice = 0.0;
             for (String order : orderList) {
                 Item item = null;
-                item = itemServiceProxy.get(order);
+                item = itemService.get(order);
+
+                if(item.getId() == -1L)
+                    return "**** Oops... Customer Server is down  ******";
+
                 System.out.println("---Item Details ----" + item);
 
                 if (item == null)
@@ -96,9 +105,9 @@ public class SalesOrderController {
                 System.out.println("Item : " + entry.getKey() + " Count : " + entry.getValue());
                 OrderLineItem orderRes = this.orderLineItemService.add(entry.getKey(), salesRes.getId(), (int)entry.getValue());
             }
-            orderIdCreated = salesRes.getId();
+            result = "" + salesRes.getId();
         }
-        return orderIdCreated;
+        return result;
     }
 
     @GetMapping(value = "orderDetailsByEmail/{email}", produces = "application/json")
