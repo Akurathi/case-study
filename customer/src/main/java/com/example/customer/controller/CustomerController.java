@@ -24,6 +24,7 @@ public class CustomerController {
     @PostMapping(value = "addCustomer" , produces = "application/json")
     public Customer add(@RequestBody Customer customer) {
         System.out.println("----Coming inside the controller---add-");
+        System.out.println(customer);
         return this.customerService.add(customer);
     }
 

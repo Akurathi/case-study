@@ -5,8 +5,8 @@ import lombok.Data;
 import javax.persistence.*;
 import java.util.Objects;
 
-@Entity(name = "Item")
-@Table(name = "item")
+//@Entity(name = "Item")
+//@Table(name = "item")
 @Data
 public class Item {
 

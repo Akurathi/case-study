@@ -5,8 +5,8 @@ import lombok.Data;
 import javax.persistence.*;
 import java.util.Objects;
 
-@Entity(name = "Customer")
-@Table(name = "customer")
+//@Entity(name = "Customer")
+//@Table(name = "customer")
 @Data
 public class Customer {
 

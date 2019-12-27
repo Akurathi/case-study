@@ -12,6 +12,8 @@ import org.springframework.cloud.netflix.ribbon.RibbonClient;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 @RestController
@@ -20,7 +22,7 @@ public class SalesOrderController {
 
     private SalesOrderService salesOrderService;
     private OrderLineItemService orderLineItemService;
-
+    private static final Logger LOG = Logger.getLogger(SalesOrderController.class.getName());
 
     @Autowired
     private CustomerServiceProxy customerServiceProxy;
@@ -36,6 +38,8 @@ public class SalesOrderController {
 
     @PostMapping(value = "orders", produces = "application/json")
     public Long createOrder(@RequestBody customDetails orderDetails) {
+
+        LOG.log(Level.INFO, "You reached create order method");
 
         System.out.println("----Coming inside the controller---create order---------------------");
 
@@ -100,6 +104,7 @@ public class SalesOrderController {
     @GetMapping(value = "orderDetailsByEmail/{email}", produces = "application/json")
     public List<HashMap<String,Integer>> getOrderDetailsByEmail(@PathVariable String email){
 
+        LOG.log(Level.INFO, "You reached order by email method");
         HashMap<String, Integer> hmap = new HashMap<>();
         List<HashMap<String,Integer>> finalList = new ArrayList<>();
         List<SalesOrder> orderIdIs = this.salesOrderService.getOrderIdByEmail(email);
