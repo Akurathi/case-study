@@ -43,8 +43,9 @@ public class SalesOrderController {
 
         System.out.println("----Coming inside the controller---create order---------------------");
 
-//        System.out.println("--- Checking Email is valid or not ----" + customerServiceProxy.getByEmail(orderDetails.getEmail()));
+        System.out.println("--- Checking Email is valid or not ----" + customerService.getByEmail(orderDetails.getEmail()));
         String result = "";
+        String unavailableItems = "";
         Customer isCustomerAvailable = null;
         boolean customerEmailAvailable = false;
 //        isCustomerAvailable = customerServiceProxy.getByEmail(orderDetails.getEmail());
@@ -66,18 +67,33 @@ public class SalesOrderController {
             List<String> orderList = orderDetails.getItemNames();
             List<String> availableList = new ArrayList<>();
 
+            System.out.println("orderList is " + orderList + " list empty check " + orderList.size());
+
+            if (orderList.isEmpty() )
+                return "**** Oops... There are no items in the list or items are currently ******";
+
             double totalPrice = 0.0;
             for (String order : orderList) {
+
+                System.out.println(" order passing to order service is " + order);
                 Item item = null;
                 item = itemService.get(order);
+                System.out.println("returned object from item service is " + item);
 
-                if(item.getId() == -1L)
-                    return "**** Oops... Customer Server is down  ******";
+                if (item == null) {
+                    //result = result + "**** Oops... Item \'" + order + "\' are currently unavailable ******";
+                    unavailableItems = unavailableItems + " " + order;
+                    continue;
+                }
 
-                System.out.println("---Item Details ----" + item);
+                else if(item.getId() == -1L)
+                {
+                    return "**** Oops... Item Server is down  ******";
 
-                if (item == null)
-                    break;
+                }
+
+//                System.out.println("---Item Details ----" + item);
+
                 else {
                     totalPrice = totalPrice + item.getPrice();
                     availableList.add(item.getName());
@@ -96,7 +112,7 @@ public class SalesOrderController {
             SalesOrder salesRes = null;
 
             if(totalPrice == 0.0)
-                return null;
+                return result;
             else
                 salesRes = this.salesOrderService.add(orderDetails.getDate(), orderDetails.getEmail(), orderDetails.getDescription(), totalPrice);
 
@@ -105,7 +121,12 @@ public class SalesOrderController {
                 System.out.println("Item : " + entry.getKey() + " Count : " + entry.getValue());
                 OrderLineItem orderRes = this.orderLineItemService.add(entry.getKey(), salesRes.getId(), (int)entry.getValue());
             }
-            result = "" + salesRes.getId();
+
+
+            result = "Order Id is " + result + salesRes.getId();
+
+            if(unavailableItems.length() > 1)
+                result =  result + " & some Items are unavailable and they are " + unavailableItems;
         }
         return result;
     }

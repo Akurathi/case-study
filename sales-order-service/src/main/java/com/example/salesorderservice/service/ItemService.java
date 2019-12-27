@@ -25,6 +25,7 @@ public class ItemService {
 
         itemModel.setId(-1L);
         itemModel.setName(item);
+        //itemModel.setDescription();
 
         return itemModel;
     }
